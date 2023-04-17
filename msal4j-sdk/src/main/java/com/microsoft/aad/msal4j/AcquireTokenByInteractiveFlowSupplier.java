@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 
 class AcquireTokenByInteractiveFlowSupplier extends AuthenticationResultSupplier {
 
-    private final static Logger LOG = LoggerFactory.getLogger(AcquireTokenByAuthorizationGrantSupplier.class);
+    private static final Logger LOG = LoggerFactory.getLogger(AcquireTokenByAuthorizationGrantSupplier.class);
 
     private PublicClientApplication clientApplication;
     private InteractiveRequest interactiveRequest;

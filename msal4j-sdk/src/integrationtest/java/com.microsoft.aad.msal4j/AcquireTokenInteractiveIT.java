@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 public class AcquireTokenInteractiveIT extends SeleniumTest {
-    private final static Logger LOG = LoggerFactory.getLogger(AuthorizationCodeIT.class);
+    private static final Logger LOG = LoggerFactory.getLogger(AuthorizationCodeIT.class);
 
     private Config cfg;
 

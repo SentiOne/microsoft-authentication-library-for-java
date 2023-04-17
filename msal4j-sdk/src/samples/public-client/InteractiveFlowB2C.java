@@ -14,9 +14,9 @@ import java.util.Set;
 
 public class InteractiveFlowB2C {
 
-    private final static String CLIENT_ID = "";
-    private final static String AUTHORITY = "https://<Tenant>.b2clogin.com/tfp/<Tenant>/<Policy>.com/";
-    private final static Set<String> SCOPE = Collections.singleton("");
+    private static final String CLIENT_ID = "";
+    private static final String AUTHORITY = "https://<Tenant>.b2clogin.com/tfp/<Tenant>/<Policy>.com/";
+    private static final Set<String> SCOPE = Collections.singleton("");
 
     public static void main(String args[]) throws Exception {
         IAuthenticationResult result = acquireTokenInteractiveB2C();

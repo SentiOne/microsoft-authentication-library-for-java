@@ -10,7 +10,6 @@ import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 import java.io.ByteArrayInputStream;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.Map.Entry;
@@ -23,7 +22,7 @@ import org.w3c.dom.NodeList;
 
 class MexParser {
 
-    private final static Logger log = LoggerFactory.getLogger(MexParser.class);
+    private static final Logger log = LoggerFactory.getLogger(MexParser.class);
 
     private static final String TRANSPORT_BINDING_XPATH = "wsp:ExactlyOne/wsp:All/sp:TransportBinding";
     private static final String TRANSPORT_BINDING_2005_XPATH = "wsp:ExactlyOne/wsp:All/sp2005:TransportBinding";
@@ -299,7 +298,7 @@ class MexParser {
         NodeList nodeList = (NodeList) xPath.compile(xpathExpression).evaluate(xmlDocument, XPathConstants.NODESET);
         for (int i = 0; i < nodeList.getLength(); i++) {
             // get back to //wsdl:definitions/wsp:Policy
-            String policy = checkPolicyIntegrated(xPath, nodeList.item(i).getParentNode().getParentNode().getParentNode());
+            String policy = checkPolicyIntegrated(nodeList.item(i).getParentNode().getParentNode().getParentNode());
             policies.put("#" + policy, new BindingPolicy("#" + policy));
         }
         return policies;
@@ -341,10 +340,8 @@ class MexParser {
         return policyId;
     }
 
-    private static String checkPolicyIntegrated(XPath xPath,
-                                                Node node) throws XPathExpressionException {
+    private static String checkPolicyIntegrated(Node node) {
         Node id = node.getAttributes().getNamedItem("wsu:Id");
-        String policyId = id.getNodeValue();
-        return policyId;
+        return id.getNodeValue();
     }
 }

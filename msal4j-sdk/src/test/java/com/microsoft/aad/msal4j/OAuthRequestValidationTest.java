@@ -39,23 +39,23 @@ import org.powermock.api.easymock.PowerMock;
 @PrepareForTest({com.microsoft.aad.msal4j.OAuthHttpRequest.class, HttpHelper.class})
 public class OAuthRequestValidationTest extends AbstractMsalTests {
 
-    final static String AUTHORITY = "https://loginXXX.windows.net/path/";
+    static final String AUTHORITY = "https://loginXXX.windows.net/path/";
 
-    final static String CLIENT_ID = "ClientId";
-    private final static String CLIENT_DUMMYSECRET = "ClientDummyPsw";
+    static final String CLIENT_ID = "ClientId";
+    private static final String CLIENT_DUMMYSECRET = "ClientDummyPsw";
 
-    final static String SCOPES = "https://SomeResource.azure.net";
-    private final static String DEFAULT_SCOPES = "openid profile offline_access";
+    static final String SCOPES = "https://SomeResource.azure.net";
+    private static final String DEFAULT_SCOPES = "openid profile offline_access";
 
-    final static String GRANT_TYPE_JWT = "urn:ietf:params:oauth:grant-type:jwt-bearer";
-    final static String CLIENT_ASSERTION_TYPE_JWT = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer";
-    final static String ON_BEHALF_OF_USE_JWT = "on_behalf_of";
+    static final String GRANT_TYPE_JWT = "urn:ietf:params:oauth:grant-type:jwt-bearer";
+    static final String CLIENT_ASSERTION_TYPE_JWT = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer";
+    static final String ON_BEHALF_OF_USE_JWT = "on_behalf_of";
 
-    final static String CLIENT_CREDENTIALS_GRANT_TYPE = "client_credentials";
+    static final String CLIENT_CREDENTIALS_GRANT_TYPE = "client_credentials";
 
-    final static String CLIENT_INFO_VALUE = "1";
+    static final String CLIENT_INFO_VALUE = "1";
 
-    final static String JWT = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ikpva" +
+    static final String JWT = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ikpva" +
             "G4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ";
 
     static String query;
@@ -156,15 +156,15 @@ public class OAuthRequestValidationTest extends AbstractMsalTests {
         }
 
         Map<String, String> queryParams = splitQuery(query);
-        Assert.assertEquals(7, queryParams.size());
+        Assert.assertEquals(queryParams.size(), 7);
 
         // validate Authorization Grants query params
-        Assert.assertEquals(GRANT_TYPE_JWT, queryParams.get("grant_type"));
-        Assert.assertEquals(JWT, queryParams.get("assertion"));
+        Assert.assertEquals(queryParams.get("grant_type"), GRANT_TYPE_JWT);
+        Assert.assertEquals(queryParams.get("assertion"), JWT);
 
         // validate Client Authentication query params
-        Assert.assertEquals(CLIENT_ID, queryParams.get("client_id"));
-        Assert.assertEquals(CLIENT_DUMMYSECRET, queryParams.get("client_secret"));
+        Assert.assertEquals(queryParams.get("client_id"), CLIENT_ID);
+        Assert.assertEquals(queryParams.get("client_secret"), CLIENT_DUMMYSECRET);
 
 
         Set<String> scopes = new HashSet<>(
@@ -178,9 +178,9 @@ public class OAuthRequestValidationTest extends AbstractMsalTests {
         Assert.assertTrue(scopes.contains(AbstractMsalAuthorizationGrant.SCOPE_PROFILE));
         Assert.assertTrue(scopes.contains(AbstractMsalAuthorizationGrant.SCOPE_OFFLINE_ACCESS));
 
-        Assert.assertEquals("on_behalf_of", queryParams.get("requested_token_use"));
+        Assert.assertEquals(queryParams.get("requested_token_use"), "on_behalf_of");
 
-        Assert.assertEquals(CLIENT_INFO_VALUE, queryParams.get("client_info"));
+        Assert.assertEquals(queryParams.get("client_info"), CLIENT_INFO_VALUE);
     }
 }
 

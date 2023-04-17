@@ -12,7 +12,7 @@ import java.util.Map;
  * Class for device code grant.
  */
 class DeviceCodeAuthorizationGrant extends AbstractMsalAuthorizationGrant {
-    private final static String GRANT_TYPE = "device_code";
+    private static final String GRANT_TYPE = "device_code";
 
     private final DeviceCode deviceCode;
     private final String scopes;

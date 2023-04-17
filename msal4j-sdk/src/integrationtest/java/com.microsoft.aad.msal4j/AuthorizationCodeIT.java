@@ -20,7 +20,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
 public class AuthorizationCodeIT extends SeleniumTest {
-    private final static Logger LOG = LoggerFactory.getLogger(AuthorizationCodeIT.class);
+    private static final Logger LOG = LoggerFactory.getLogger(AuthorizationCodeIT.class);
 
     private Config cfg;
 

@@ -30,7 +30,7 @@ import java.util.List;
 
 final class ClientCertificate implements IClientCertificate {
 
-    private final static int MIN_KEY_SIZE_IN_BITS = 2048;
+    private static final int MIN_KEY_SIZE_IN_BITS = 2048;
     public static final String DEFAULT_PKCS12_PASSWORD = "";
 
     @Accessors(fluent = true)
@@ -91,7 +91,7 @@ final class ClientCertificate implements IClientCertificate {
     }
 
     static ClientCertificate create(InputStream pkcs12Certificate, String password)
-            throws KeyStoreException, NoSuchProviderException, NoSuchAlgorithmException,
+            throws KeyStoreException, NoSuchAlgorithmException,
             CertificateException, IOException, UnrecoverableKeyException {
         // treat null password as default one - empty string
         if (password == null) {

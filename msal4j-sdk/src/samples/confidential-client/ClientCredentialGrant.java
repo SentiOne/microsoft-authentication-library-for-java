@@ -12,12 +12,12 @@ import java.util.Set;
 
 class ClientCredentialGrant {
 
-    private final static String CLIENT_ID = "";
-    private final static String AUTHORITY = "https://login.microsoftonline.com/<tenant>/";
-    private final static String CLIENT_SECRET = "";
-    private final static Set<String> SCOPE = Collections.singleton("");
+    private static final String CLIENT_ID = "";
+    private static final String AUTHORITY = "https://login.microsoftonline.com/<tenant>/";
+    private static final String CLIENT_SECRET = "";
+    private static final Set<String> SCOPE = Collections.singleton("");
 
-    public static void main(String args[]) throws Exception {
+    public static void main(String[] args) throws Exception {
         IAuthenticationResult result = acquireToken();
         System.out.println("Access token: " + result.accessToken());
     }

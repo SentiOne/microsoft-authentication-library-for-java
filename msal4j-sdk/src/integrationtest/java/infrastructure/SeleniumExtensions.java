@@ -26,7 +26,7 @@ import java.util.concurrent.TimeUnit;
 
 public class SeleniumExtensions {
 
-    private final static Logger LOG = LoggerFactory.getLogger(SeleniumExtensions.class);
+    private static final Logger LOG = LoggerFactory.getLogger(SeleniumExtensions.class);
 
     private SeleniumExtensions() {
     }

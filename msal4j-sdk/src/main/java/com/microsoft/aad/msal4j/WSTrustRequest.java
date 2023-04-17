@@ -14,8 +14,8 @@ import java.util.UUID;
 
 class WSTrustRequest {
 
-    private final static int MAX_EXPECTED_MESSAGE_SIZE = 1024;
-    final static String DEFAULT_APPLIES_TO = "urn:federation:MicrosoftOnline";
+    private static final int MAX_EXPECTED_MESSAGE_SIZE = 1024;
+    static final String DEFAULT_APPLIES_TO = "urn:federation:MicrosoftOnline";
 
     static WSTrustResponse execute(String username,
                                    String password,
@@ -99,7 +99,7 @@ class WSTrustRequest {
 
         StringBuilder securityHeaderBuilder = new StringBuilder(MAX_EXPECTED_MESSAGE_SIZE);
         if (!integrated) {
-            buildSecurityHeader(securityHeaderBuilder, username, password, addressVersion);
+            buildSecurityHeader(securityHeaderBuilder, username, password);
         }
 
         String guid = UUID.randomUUID().toString();
@@ -216,7 +216,7 @@ class WSTrustRequest {
 
     private static StringBuilder buildSecurityHeader(
             StringBuilder securityHeaderBuilder, String username,
-            String password, WSTrustVersion version) {
+            String password) {
 
         StringBuilder messageCredentialsBuilder = new StringBuilder(
                 MAX_EXPECTED_MESSAGE_SIZE);

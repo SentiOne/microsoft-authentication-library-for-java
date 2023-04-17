@@ -14,9 +14,9 @@ import java.util.Set;
 
 public class InteractiveFlow {
 
-    private final static String CLIENT_ID = "";
-    private final static String AUTHORITY = "";
-    private final static Set<String> SCOPE = Collections.singleton("");
+    private static final String CLIENT_ID = "";
+    private static final String AUTHORITY = "";
+    private static final Set<String> SCOPE = Collections.singleton("");
 
     public static void main(String[] args) throws Exception{
         IAuthenticationResult result = acquireTokenInteractive();

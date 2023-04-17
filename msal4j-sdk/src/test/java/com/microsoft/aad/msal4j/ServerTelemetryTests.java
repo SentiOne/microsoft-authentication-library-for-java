@@ -19,11 +19,11 @@ import java.util.concurrent.Executors;
 public class ServerTelemetryTests {
 
     private static final String SCHEMA_VERSION = "5";
-    private final static String CURRENT_REQUEST_HEADER_NAME = "x-client-current-telemetry";
-    private final static String LAST_REQUEST_HEADER_NAME = "x-client-last-telemetry";
+    private static final String CURRENT_REQUEST_HEADER_NAME = "x-client-current-telemetry";
+    private static final String LAST_REQUEST_HEADER_NAME = "x-client-last-telemetry";
 
-    private final static String PUBLIC_API_ID = String.valueOf(PublicApi.ACQUIRE_TOKEN_BY_AUTHORIZATION_CODE.getApiId());
-    private final static String ERROR = "invalid_grant";
+    private static final String PUBLIC_API_ID = String.valueOf(PublicApi.ACQUIRE_TOKEN_BY_AUTHORIZATION_CODE.getApiId());
+    private static final String ERROR = "invalid_grant";
 
     @Test
     public void serverTelemetryHeaders_correctSchema() {
