@@ -124,16 +124,8 @@ class AcquireTokenByInteractiveFlowSupplier extends AuthenticationResultSupplier
     private AuthorizationResult getAuthorizationResultFromHttpListener() {
         AuthorizationResult result = null;
         try {
-            int timeFromParameters = interactiveRequest.interactiveRequestParameters().httpPollingTimeoutInSeconds();
-            long expirationTime;
-
-            if (timeFromParameters > 0) {
-                LOG.debug(String.format("Listening for authorization result. Listener will timeout after %S seconds.", timeFromParameters));
-                expirationTime = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis()) + timeFromParameters;
-            } else {
-                LOG.warn("Listening for authorization result. Timeout configured to less than 1 second, listener will use a 1 second timeout instead.");
-                expirationTime = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis()) + 1;
-            }
+            LOG.debug("Listening for authorization result");
+            long expirationTime = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis()) + 120;
 
             while (result == null && !interactiveRequest.futureReference().get().isCancelled() &&
                     TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis()) < expirationTime) {
