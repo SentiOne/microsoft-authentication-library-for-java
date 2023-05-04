@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 
 class AcquireTokenByClientCredentialSupplier extends AuthenticationResultSupplier {
 
-    private static final Logger LOG = LoggerFactory.getLogger(AcquireTokenByClientCredentialSupplier.class);
+    private final static Logger LOG = LoggerFactory.getLogger(AcquireTokenByClientCredentialSupplier.class);
     private ClientCredentialRequest clientCredentialRequest;
 
     AcquireTokenByClientCredentialSupplier(ConfidentialClientApplication clientApplication,
@@ -55,29 +55,6 @@ class AcquireTokenByClientCredentialSupplier extends AuthenticationResultSupplie
     }
 
     private AuthenticationResult acquireTokenByClientCredential() throws Exception {
-
-        if (this.clientCredentialRequest.appTokenProvider != null) {
-
-            String claims = "";
-            if (null != clientCredentialRequest.parameters.claims()) {
-                claims = clientCredentialRequest.parameters.claims().toString();
-            }
-
-            AppTokenProviderParameters appTokenProviderParameters = new AppTokenProviderParameters(
-                    clientCredentialRequest.parameters.scopes(),
-                    clientCredentialRequest.requestContext().correlationId(),
-                    claims,
-                    clientCredentialRequest.parameters.tenant()
-            );
-
-            AcquireTokenByAppProviderSupplier supplier =
-                    new AcquireTokenByAppProviderSupplier(this.clientApplication,
-                            clientCredentialRequest,
-                            appTokenProviderParameters);
-
-            return supplier.execute();
-        }
-
         AcquireTokenByAuthorizationGrantSupplier supplier = new AcquireTokenByAuthorizationGrantSupplier(
                 this.clientApplication,
                 clientCredentialRequest,
@@ -85,6 +62,4 @@ class AcquireTokenByClientCredentialSupplier extends AuthenticationResultSupplie
 
         return supplier.execute();
     }
-
-
 }

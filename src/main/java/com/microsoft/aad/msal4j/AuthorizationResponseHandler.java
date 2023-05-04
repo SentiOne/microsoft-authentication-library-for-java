@@ -100,11 +100,9 @@ class AuthorizationResponseHandler implements HttpHandler {
     }
 
     private void send200Response(HttpExchange httpExchange, String response) throws IOException {
-        byte[] responseBytes = response.getBytes("UTF-8");
-        httpExchange.getResponseHeaders().set("Content-Type", "text/html; charset=UTF-8");
-        httpExchange.sendResponseHeaders(200, responseBytes.length);
+        httpExchange.sendResponseHeaders(200, response.length());
         OutputStream os = httpExchange.getResponseBody();
-        os.write(responseBytes);
+        os.write(response.getBytes("UTF-8"));
         os.close();
     }
 
