@@ -1,0 +1,17 @@
+{
+    "codebaseName": "MSAL4J Dev",
+    "notificationAliases": [
+        "IdentityDevExJavaPy@microsoft.com"
+    ],
+    "codebaseAdmins": [
+        "REDMOND\\avdunn"
+    ],
+    "instanceUrl": "https://identitydivision.visualstudio.com",
+    "projectName": "IDDP",
+    "areaPath": "IDDP\DevEx-Client-SDK",
+    "iterationPath": "IDDP\Unscheduled",
+    "tools": [
+        "PoliCheck",
+        "CredScan"
+    ]
+}
