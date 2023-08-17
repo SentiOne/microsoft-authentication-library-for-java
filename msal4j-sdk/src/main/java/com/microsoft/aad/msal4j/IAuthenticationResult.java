@@ -16,6 +16,11 @@ public interface IAuthenticationResult extends Serializable {
     String accessToken();
 
     /**
+     * @return refresh token
+     */
+    String refreshToken();
+
+    /**
      * @return id token
      */
     String idToken();
